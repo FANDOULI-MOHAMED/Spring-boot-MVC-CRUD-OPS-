@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Person List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Style.css}"/>
+</head>
+<body>
+<h1>Person List</h1>
+<a th:href="addPerson">Add Person</a><br/><br/>
+<form th:action="@{/personController/delete}"   method="POST">
+<div>
+    <table border="1">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actoins</th>
+        </tr>
+        <tr th:each ="person : ${Persons}">
+            <td th:text="${person.firstName}">...</td>
+            <td th:text="${person.lastName}">...</td>
+            <td>
+            <input type="submit"  th:value="${person.id}"  th:name="fieldId"/>
+
+            <a th:href="@{/personController/edit/{id}(id=${person.id})}">edit</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</form>
+</body>
+</html>
